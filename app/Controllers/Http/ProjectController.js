@@ -1,6 +1,7 @@
 'use strict'
 
 const Project = use('App/Models/Project')
+const AuthService = use('App/Services/AuthServices')
 
 class ProjectController {
     async index({auth}){
@@ -23,11 +24,7 @@ class ProjectController {
         const user = await auth.getUser()
         const { id } = params
         const project = await Project.find(id)
-        if (project.user_id !== user.id) {
-            return response.status(403).json({
-                message:"Error! Usted NO tiene los permisos necesarios"
-            })
-        }
+        AuthService.checkPermissions(project, user)
         await project.delete()
         return project
     }
