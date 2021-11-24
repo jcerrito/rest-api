@@ -19,8 +19,11 @@ const Route = use('Route')
 Route.group(() => {
   Route.post('user/register', 'UserController.store')
   Route.post('user/login', 'UserController.login')
+  //Rutas para los proyectos
   Route.get('project', 'ProjectController.index').middleware('auth')
   Route.post('project', 'ProjectController.create').middleware('auth')
   Route.delete('project/:id','ProjectController.destroy').middleware('auth')
   Route.patch('project/:id','ProjectController.update').middleware('auth')
+  //Rutas de las tareas
+  Route.post('project/:id/tasks', 'TaskController.create').middleware('auth')
 }).prefix('api');
