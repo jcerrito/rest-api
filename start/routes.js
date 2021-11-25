@@ -27,4 +27,6 @@ Route.group(() => {
   //Rutas de las tareas
   Route.get('project/:id/tasks', 'TaskController.index').middleware('auth')
   Route.post('project/:id/tasks', 'TaskController.create').middleware('auth')
+  Route.patch('tasks/:id', 'TaskController.update').middleware('auth')
+  Route.delete('tasks/:id', 'TaskController.destroy').middleware('auth')
 }).prefix('api');
