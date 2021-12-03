@@ -17,6 +17,9 @@
 const Route = use('Route')
 
 Route.group(() => {
+
+  Route.get('/index', {mensaje:"BIENVENIDO"})
+
   //Rutas para los usuarios
   Route.post('user/register', 'UserController.store')
   Route.post('user/login', 'UserController.login')
